@@ -1,6 +1,6 @@
 import NextAuthProvider from "@/components/providers/next-auth-providers";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { ModeToggle } from "@/components/ui/mode-toggle";
+import TopNav from "@/components/top-nav";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
@@ -37,10 +37,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NextAuthProvider>
-            <div>
-              <ModeToggle />
-              {children}
-            </div>
+            <TopNav />
+            {children}
           </NextAuthProvider>
         </ThemeProvider>
       </body>

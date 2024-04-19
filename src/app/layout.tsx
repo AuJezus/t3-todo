@@ -1,4 +1,6 @@
 import NextAuthProvider from "@/components/providers/next-auth-providers";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
@@ -21,14 +23,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           "bg-background min-h-screen font-sans antialiased",
           robotoFont.variable,
         )}
       >
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NextAuthProvider>
+            <div>
+              <ModeToggle />
+              {children}
+            </div>
+          </NextAuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

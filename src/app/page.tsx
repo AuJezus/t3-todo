@@ -1,9 +1,6 @@
 import AuthButton from "@/components/auth-btn";
+import TaskForm from "@/components/task-form";
 import Todo from "@/components/todo";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { createTask } from "@/server/actions";
 import { getServerAuthSession } from "@/server/auth";
 import { getMyTasks } from "@/server/queries";
 
@@ -24,15 +21,7 @@ export default async function HomePage() {
     <main className="mx-auto max-w-[1200px] p-6">
       <h1 className="mb-4 text-4xl font-semibold">To-do</h1>
 
-      <form action={createTask} className="mb-4 flex items-center gap-4">
-        <Label>Task:</Label>
-        <Input
-          name="task"
-          className="max-w-72"
-          placeholder="Type in your new task"
-        />
-        <Button type="submit">Create</Button>
-      </form>
+      <TaskForm className="mb-4" />
 
       <ul className="flex flex-col gap-4">
         {tasks.map((todo) => (

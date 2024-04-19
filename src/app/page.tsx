@@ -1,13 +1,11 @@
 import AuthButton from "@/components/auth-btn";
+import Todo from "@/components/todo";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 import { createTask } from "@/server/actions";
 import { getServerAuthSession } from "@/server/auth";
 import { getMyTasks } from "@/server/queries";
-import { EditIcon, Trash2Icon } from "lucide-react";
 
 export default async function HomePage() {
   const session = await getServerAuthSession();
@@ -31,28 +29,14 @@ export default async function HomePage() {
         <Input
           name="task"
           className="max-w-72"
-          placeholder="Program a new backend"
+          placeholder="Type in your new task"
         />
         <Button type="submit">Create</Button>
       </form>
 
       <ul className="flex flex-col gap-4">
         {tasks.map((todo) => (
-          <li
-            className="bg-secondary flex w-fit items-center gap-4 rounded-md p-2"
-            key={todo.task}
-          >
-            <p
-              className={cn(
-                todo.isDone && "text-muted-foreground line-through",
-              )}
-            >
-              {todo.task}
-            </p>
-            <Checkbox className="h-6 w-6" defaultChecked={todo.isDone} />
-            <EditIcon className="text-muted-foreground" />
-            <Trash2Icon className="text-destructive" />
-          </li>
+          <Todo key={todo.id} todo={todo} />
         ))}
       </ul>
     </main>

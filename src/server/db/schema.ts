@@ -32,6 +32,8 @@ export const tasks = createTable("task", {
     .notNull(),
 });
 
+export type Task = typeof tasks.$inferSelect;
+
 export const users = createTable("user", {
   id: varchar("id", { length: 255 }).notNull().primaryKey(),
   name: varchar("name", { length: 255 }),

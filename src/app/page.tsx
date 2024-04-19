@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SignInButton from "./sign-in-btn";
 
 export default function HomePage() {
   return (
@@ -31,6 +32,7 @@ export default function HomePage() {
             </div>
           </Link>
         </div>
+        <SignInButton />
       </div>
     </main>
   );

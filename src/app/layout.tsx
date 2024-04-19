@@ -1,10 +1,11 @@
 import NextAuthProvider from "@/components/providers/next-auth-providers";
+import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
-import { Inter } from "next/font/google";
+import { VT323 } from "next/font/google";
 
-const inter = Inter({
-  subsets: ["latin"],
+const vt = VT323({
+  weight: ["400"],
   variable: "--font-sans",
 });
 
@@ -21,7 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
+      <body
+        className={
+          (cn("bg-background min-h-screen font-sans antialiased"), vt.variable)
+        }
+      >
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
